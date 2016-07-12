@@ -20,8 +20,10 @@ public class ButtonState
 /// </summary>
 public enum EDirections
 {
-    Right = 1,
-    Left = -1
+    Up = 0,
+    Down = 1,
+    Right = 2,
+    Left = 3
 }
 
 

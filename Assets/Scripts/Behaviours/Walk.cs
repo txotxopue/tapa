@@ -14,13 +14,33 @@ public class Walk : AbstractBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        var right = _inputState.GetButtonValue(_inputButtons[0]);
-        var left = _inputState.GetButtonValue(_inputButtons[1]);
+        // get inputs
+        var up = _inputState.GetButtonValue(_inputButtons[0]);
+        var down = _inputState.GetButtonValue(_inputButtons[1]);
+        var right = _inputState.GetButtonValue(_inputButtons[2]);
+        var left = _inputState.GetButtonValue(_inputButtons[3]);
 
-        if (right || left)
+        float velX = 0;
+        float velY = 0;
+        if (right)
         {
-            var velX = _speed * (float)_inputState._direction;
-            _body2d.velocity = new Vector2(velX, _body2d.velocity.y);
+            velX = 1f;
         }
+        else if (left)
+        {
+            velX = -1f;
+        }
+        if (up)
+        {
+            velY = 1f;
+        }
+        else if (down)
+        {
+            velY = -1f;
+        }
+
+        var movement = new Vector2(velX, velY).normalized * _speed;
+
+        _body2d.velocity = movement;
     }
 }
