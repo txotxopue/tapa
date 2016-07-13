@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Health : MonoBehaviour
 {
-    public int _maxHP = 10;
-    public int _currentHP;
-    public bool _bDead = false;
-    public bool _bHit = false;
-    public float _hitCD = 1f;
+    public int maxHP = 10;
+    public int currentHP;
+    public bool isEnemy = false;
+    public bool isDead = false;
+    public bool isHit = false;
+    public float hitCD = 1f;
 
 	// Use this for initialization
 	void Start ()
@@ -17,41 +18,42 @@ public class Health : MonoBehaviour
 	
     private void InitHealth()
     {
-        _currentHP = _maxHP;
-        _bDead = false;
-        _bHit = false;
+        this.currentHP = this.maxHP;
+        this.isDead = false;
+        this.isHit = false;
     }
 
     public void TakeDamage(int pAmount)
     {
-        if (!_bDead && !_bHit)
+        if (!this.isDead && !this.isHit)
         {
-            _currentHP -= pAmount;
-            if (_currentHP < 0)
+            print("Hit by " + pAmount);
+            this.currentHP -= pAmount;
+            if (this.currentHP < 0)
             {
-                _currentHP = 0;
-                _bDead = true;
+                this.currentHP = 0;
+                this.isDead = true;
             }
-            _bHit = true;
+            this.isHit = true;
             StartCoroutine(RestoreHit());
         }
     }
 
     public void Heal(int pAmount)
     {
-        if (!_bDead)
+        if (!this.isDead)
         {
-            _currentHP += pAmount;
-            if (_currentHP > _maxHP)
+            this.currentHP += pAmount;
+            if (this.currentHP > this.maxHP)
             {
-                _currentHP = _maxHP;
+                this.currentHP = this.maxHP;
             }
         }
     }
 
     private IEnumerator RestoreHit()
     {
-        yield return new WaitForSeconds(_hitCD);
-        _bHit = false;
+        yield return new WaitForSeconds(hitCD);
+        this.isHit = false;
     }
 }

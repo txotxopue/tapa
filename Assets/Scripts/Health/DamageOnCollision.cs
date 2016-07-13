@@ -14,7 +14,6 @@ public class DamageOnCollision : MonoBehaviour
 
     void OnTriggerEnter2D (Collider2D other)
     {
-        print("Colliding");
         if (other.CompareTag("Enemy"))
         {
             _healthScript.TakeDamage(_damageOnCollision);
