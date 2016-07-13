@@ -781,6 +781,8 @@ MonoBehaviour:
   _inputButtons: 04000000
   _disableScripts: []
   projectilePrefab: {fileID: 145624, guid: a627806c63eed754f90d279c9bc7cffe, type: 2}
+  shootCD: 0.3
+  canShoot: 1
 --- !u!114 &820854999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,14 +1138,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 409880, guid: a627806c63eed754f90d279c9bc7cffe, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 409880, guid: a627806c63eed754f90d279c9bc7cffe, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.00000016292068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 409880, guid: a627806c63eed754f90d279c9bc7cffe, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409880, guid: a627806c63eed754f90d279c9bc7cffe, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409880, guid: a627806c63eed754f90d279c9bc7cffe, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

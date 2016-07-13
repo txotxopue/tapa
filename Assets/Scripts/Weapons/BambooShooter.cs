@@ -38,10 +38,32 @@ public class BambooShooter : AbstractBehaviour
             print(spawnPos);
             var projectile = Instantiate(this.projectilePrefab);
             projectile.transform.position = spawnPos;
+            var rotation = new Quaternion();
+            rotation.eulerAngles = new Vector3(0, 0, GetProjectileRotation(this.stateScript._direction));
+            projectile.transform.rotation = rotation;
             this.canShoot = false;
             StartCoroutine(RestoreShoot());
         }
     }
+
+
+    private float GetProjectileRotation(EDirections pDirection)
+    {
+        switch (pDirection)
+        {
+            case EDirections.Up:
+                return 0f;
+            case EDirections.Down:
+                return 180f;
+            case EDirections.Right:
+                return 270f;
+            case EDirections.Left:
+                return 90f;
+            default:
+                return 0f;              
+        }
+    }
+
 
     private IEnumerator RestoreShoot()
     {
