@@ -37,26 +37,26 @@ public enum EDirections
 public class InputState : MonoBehaviour
 {
     /// <summary> The direction we are facing </summary>
-    public EDirections _direction = EDirections.Right;
+    public EDirections direction = EDirections.Right;
     /// <summary> The current absolute horizontal velocity </summary>
-    public float _absVelX;
+    public float absVelX;
     /// <summary> The current absolute vertical velocity </summary>
-    public float _absVelY;
+    public float absVelY;
 
     /// <summary> Reference to the character Rigidbody2D </summary>
-    private Rigidbody2D _body2d;
+    private Rigidbody2D body2d;
     /// <summary> The list of the virtual buttons used by the character and their current state </summary>
-    private Dictionary<EButtons, ButtonState> _buttonStates = new Dictionary<EButtons, ButtonState>();
+    private Dictionary<EButtons, ButtonState> buttonStates = new Dictionary<EButtons, ButtonState>();
 
     void Awake()
     {
-        _body2d = GetComponent<Rigidbody2D>();
+        this.body2d = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        _absVelX = Mathf.Abs(_body2d.velocity.x);
-        _absVelY = Mathf.Abs(_body2d.velocity.y);
+        this.absVelX = Mathf.Abs(this.body2d.velocity.x);
+        this.absVelY = Mathf.Abs(this.body2d.velocity.y);
     }
 
     /// <summary>
@@ -67,11 +67,11 @@ public class InputState : MonoBehaviour
     /// <param name="value">Button value to set</param>
     public void SetButtonValue(EButtons key, bool value)
     {
-        if (!_buttonStates.ContainsKey(key))
+        if (!this.buttonStates.ContainsKey(key))
         {
-            _buttonStates.Add(key, new ButtonState());
+            this.buttonStates.Add(key, new ButtonState());
         }
-        var state = _buttonStates[key];
+        var state = this.buttonStates[key];
 
         // Reset the holdtime when the button is pressed after being non pressed
         if (state.bPressed && !value)
@@ -94,9 +94,9 @@ public class InputState : MonoBehaviour
     /// <returns>True if the button is pressed, or false if not</returns>
     public bool GetButtonValue(EButtons key)
     {
-        if (_buttonStates.ContainsKey(key))
+        if (this.buttonStates.ContainsKey(key))
         {
-            return _buttonStates[key].bPressed;
+            return this.buttonStates[key].bPressed;
         }
         else
         {
@@ -111,9 +111,9 @@ public class InputState : MonoBehaviour
     /// <returns>the time in seconds that the button have been pressed</returns>
     public float GetButtonHoldTime(EButtons key)
     {
-        if (_buttonStates.ContainsKey(key))
+        if (this.buttonStates.ContainsKey(key))
         {
-            return _buttonStates[key].holdTime;
+            return this.buttonStates[key].holdTime;
         }
         else
         {

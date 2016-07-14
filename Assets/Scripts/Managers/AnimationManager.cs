@@ -29,11 +29,11 @@ public class AnimationManager : MonoBehaviour
             ChangeAnimationState(0);
         }
         */
-        if (this.inputState._absVelX > 0)
+        if (this.inputState.absVelX > 0)
         {
             ChangeAnimationState(1);
         }
-        if (this.inputState._absVelY > 0)
+        if (this.inputState.absVelY > 0)
         {
             ChangeAnimationState(2);
         }

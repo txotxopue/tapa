@@ -34,8 +34,8 @@ public class BambooShooter : AbstractBehaviour
 
         if (this.canShoot && shoot)
         {
-            var spawnPos = this.projectileSpawns[(int) this.stateScript._direction].transform.position;
-            var rotation = new Vector3(0, 0, GetProjectileRotation(this.stateScript._direction));
+            var spawnPos = this.projectileSpawns[(int) this.stateScript.direction].transform.position;
+            var rotation = new Vector3(0, 0, GetProjectileRotation(this.stateScript.direction));
             GameObjectUtil.Instantiate(this.projectilePrefab, spawnPos, rotation);
             
             this.canShoot = false;

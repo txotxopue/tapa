@@ -9,23 +9,17 @@ public class AutoMove : MonoBehaviour, IRecycle
 
 	void Awake ()
     {
-        body2D = GetComponent<Rigidbody2D>();
+        this.body2D = GetComponent<Rigidbody2D>();
     }
 	
     public void Restart ()
     {
-        var movement = speed * transform.up * Time.deltaTime;
-        body2D.velocity = movement;
+        var movement = this.speed * this.transform.up * Time.deltaTime;
+        this.body2D.velocity = movement;
     }
 
     public void Shutdown()
     {
 
     }
-
-	// Update is called once per frame
-	void FixedUpdate ()
-    {
-        //transform.Translate(movement);
-	}
 }

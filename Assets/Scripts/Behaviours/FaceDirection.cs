@@ -20,39 +20,39 @@ public class FaceDirection : AbstractBehaviour
         {
             if (right)
             {
-                this.inputState._direction = EDirections.UpRight;
+                this.inputState.direction = EDirections.UpRight;
             }
             else if (left)
             {
-                this.inputState._direction = EDirections.UpLeft;
+                this.inputState.direction = EDirections.UpLeft;
             }
             else
             {
-                this.inputState._direction = EDirections.Up;
+                this.inputState.direction = EDirections.Up;
             }
         }
         else if (down)
         {
             if (right)
             {
-                this.inputState._direction = EDirections.DownRight;
+                this.inputState.direction = EDirections.DownRight;
             }
             else if (left)
             {
-                this.inputState._direction = EDirections.DownLeft;
+                this.inputState.direction = EDirections.DownLeft;
             }
             else
             {
-                this.inputState._direction = EDirections.Down;
+                this.inputState.direction = EDirections.Down;
             }
         }
         else if (right)
         {
-            this.inputState._direction = EDirections.Right;
+            this.inputState.direction = EDirections.Right;
         }
         else if (left)
         {
-            this.inputState._direction = EDirections.Left;
+            this.inputState.direction = EDirections.Left;
         }
 
         // Mirrors the character if we are looking to the left

@@ -983,7 +983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b948e9b729c32444bc9e83dcd145e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageOnCollision: 1
+  damageOnCollision: 1
 --- !u!114 &820855000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1075,7 +1075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b948e9b729c32444bc9e83dcd145e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageOnCollision: 1
+  damageOnCollision: 1
 --- !u!114 &880470111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,7 +1339,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe249ce1876b404a92cc8677c20ebb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputs:
+  inputs:
+  - _axisName: Horizontal
+    _offValue: 0
+    _condition: 0
+    _button: 0
+  - _axisName: Horizontal
+    _offValue: 0
+    _condition: 1
+    _button: 1
   - _axisName: Vertical
     _offValue: 0
     _condition: 0
@@ -1348,22 +1356,10 @@ MonoBehaviour:
     _offValue: 0
     _condition: 1
     _button: 3
-  - _axisName: Horizontal
-    _offValue: 0
-    _condition: 1
-    _button: 1
-  - _axisName: Horizontal
-    _offValue: 0
-    _condition: 0
-    _button: 0
   - _axisName: Fire1
     _offValue: 0
     _condition: 0
     _button: 4
-  - _axisName: Fire2
-    _offValue: 0
-    _condition: 0
-    _button: 5
   inputState: {fileID: 820854994}
 --- !u!4 &1051253988
 Transform:
@@ -1389,31 +1385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe249ce1876b404a92cc8677c20ebb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputs:
-  - _axisName: VerticalJoy2
-    _offValue: 0
-    _condition: 0
-    _button: 2
-  - _axisName: VerticalJoy2
-    _offValue: 0
-    _condition: 1
-    _button: 3
-  - _axisName: HorizontalJoy2
-    _offValue: 0
-    _condition: 1
-    _button: 1
-  - _axisName: HorizontalJoy2
-    _offValue: 0
-    _condition: 0
-    _button: 0
-  - _axisName: Fire1Joy2
-    _offValue: 0
-    _condition: 0
-    _button: 4
-  - _axisName: Fire2Joy2
-    _offValue: 0
-    _condition: 0
-    _button: 5
+  inputs: []
   inputState: {fileID: 0}
 --- !u!114 &1051253990
 MonoBehaviour:
@@ -1426,7 +1398,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe249ce1876b404a92cc8677c20ebb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputs:
+  inputs:
+  - _axisName: HorizontalJoy1
+    _offValue: 0
+    _condition: 0
+    _button: 0
+  - _axisName: HorizontalJoy1
+    _offValue: 0
+    _condition: 1
+    _button: 1
   - _axisName: VerticalJoy1
     _offValue: 0
     _condition: 0
@@ -1435,22 +1415,10 @@ MonoBehaviour:
     _offValue: 0
     _condition: 1
     _button: 3
-  - _axisName: HorizontalJoy1
-    _offValue: 0
-    _condition: 1
-    _button: 1
-  - _axisName: HorizontalJoy1
-    _offValue: 0
-    _condition: 0
-    _button: 0
   - _axisName: Fire1Joy1
     _offValue: 0
     _condition: 0
     _button: 4
-  - _axisName: Fire2Joy1
-    _offValue: 0
-    _condition: 0
-    _button: 5
   inputState: {fileID: 880470115}
 --- !u!1 &1087227790
 GameObject:

@@ -65,8 +65,7 @@ public class Health : MonoBehaviour
         this.isDead = true;
         if (this.DeadCallback != null) DeadCallback();
         //whatever
-        var particles = Instantiate(this.deadParticlesPrefab);
-        particles.transform.position = this.transform.position;
+        GameObjectUtil.Instantiate(this.deadParticlesPrefab, this.transform.position, Vector3.zero);
         GameObjectUtil.Destroy(this.gameObject);
         //this.gameObject.SetActive(false);
     }
