@@ -23,7 +23,11 @@ public enum EDirections
     Up = 0,
     Down = 1,
     Right = 2,
-    Left = 3
+    Left = 3,
+    UpRight = 4,
+    UpLeft = 5,
+    DownRight = 6,
+    DownLeft = 7
 }
 
 

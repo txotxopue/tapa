@@ -9,16 +9,16 @@ using System.Collections;
 public class Walk : AbstractBehaviour
 {
     /// <summary> Speed of the character </summary>
-    public float _speed = 50f;
+    public float speed = 50f;
 	
 	// Update is called once per frame
 	void Update ()
     {
         // get inputs
-        var up = _inputState.GetButtonValue(_inputButtons[0]);
-        var down = _inputState.GetButtonValue(_inputButtons[1]);
-        var right = _inputState.GetButtonValue(_inputButtons[2]);
-        var left = _inputState.GetButtonValue(_inputButtons[3]);
+        var up = this.inputState.GetButtonValue(this.inputButtons[0]);
+        var down = this.inputState.GetButtonValue(this.inputButtons[1]);
+        var right = this.inputState.GetButtonValue(this.inputButtons[2]);
+        var left = this.inputState.GetButtonValue(this.inputButtons[3]);
 
         float velX = 0;
         float velY = 0;
@@ -39,8 +39,8 @@ public class Walk : AbstractBehaviour
             velY = -1f;
         }
 
-        var movement = new Vector2(velX, velY).normalized * _speed;
+        var movement = new Vector2(velX, velY).normalized * this.speed;
 
-        _body2d.velocity = movement;
+        this.body2d.velocity = movement;
     }
 }

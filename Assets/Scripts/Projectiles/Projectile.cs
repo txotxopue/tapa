@@ -15,20 +15,19 @@ public class Projectile : MonoBehaviour
         {
             print("Take damage " + damage);
             healthScript.TakeDamage(damage);
-            Die();
+            Impact();
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
-            Die();
+            Impact();
         }
         
     }
 
-    private void Die()
+    private void Impact()
     {
-        var go = Instantiate(this.particlePrefab);
-        go.transform.position = this.transform.GetChild(0).position;
-        Destroy(this.gameObject);
+        GameObjectUtil.Instantiate(this.particlePrefab, this.transform.GetChild(0).position, Vector3.zero);
+        GameObjectUtil.Destroy(this.gameObject);
     }
 
     void OnDrawGizmos()

@@ -79,7 +79,7 @@ public class InputManager : MonoBehaviour
     /// <summary> List of all the inputs and their mapped virtual input </summary>
     public InputAxisState[] _inputs;
     /// <summary> Reference to the input state which we will pass all the input results to </summary>
-    public InputState _inputState;
+    public InputState inputState;
 	
 	// Update is called once per frame
 	void Update ()
@@ -87,7 +87,7 @@ public class InputManager : MonoBehaviour
         // We run through every mapped input and set its value in the input state
 	    foreach (InputAxisState input in _inputs)
         {
-            _inputState.SetButtonValue(input._button, input.value);
+            if (this.inputState != null) inputState.SetButtonValue(input._button, input.value);
         }
 	}
 }

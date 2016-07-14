@@ -11,26 +11,48 @@ public class FaceDirection : AbstractBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        var up = _inputState.GetButtonValue(_inputButtons[0]);
-        var down = _inputState.GetButtonValue(_inputButtons[1]);
-        var right = _inputState.GetButtonValue(_inputButtons[2]);
-        var left = _inputState.GetButtonValue(_inputButtons[3]);
+        var up = this.inputState.GetButtonValue(this.inputButtons[0]);
+        var down = this.inputState.GetButtonValue(this.inputButtons[1]);
+        var right = this.inputState.GetButtonValue(this.inputButtons[2]);
+        var left = this.inputState.GetButtonValue(this.inputButtons[3]);
 
         if (up)
         {
-            _inputState._direction = EDirections.Up;
+            if (right)
+            {
+                this.inputState._direction = EDirections.UpRight;
+            }
+            else if (left)
+            {
+                this.inputState._direction = EDirections.UpLeft;
+            }
+            else
+            {
+                this.inputState._direction = EDirections.Up;
+            }
         }
         else if (down)
         {
-            _inputState._direction = EDirections.Down;
+            if (right)
+            {
+                this.inputState._direction = EDirections.DownRight;
+            }
+            else if (left)
+            {
+                this.inputState._direction = EDirections.DownLeft;
+            }
+            else
+            {
+                this.inputState._direction = EDirections.Down;
+            }
         }
-        if (right)
+        else if (right)
         {
-            _inputState._direction = EDirections.Right;
+            this.inputState._direction = EDirections.Right;
         }
         else if (left)
         {
-            _inputState._direction = EDirections.Left;
+            this.inputState._direction = EDirections.Left;
         }
 
         // Mirrors the character if we are looking to the left

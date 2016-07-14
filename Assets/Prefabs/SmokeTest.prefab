@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 432928}
   - 212: {fileID: 21274584}
   - 114: {fileID: 11445786}
+  - 114: {fileID: 11454688}
   m_Layer: 0
   m_Name: SmokeTest
   m_TagString: Untagged
@@ -42,6 +43,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToLive: 0.5
+--- !u!114 &11454688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542262850b10d6c41a883477e0613263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21274584
 SpriteRenderer:
   m_ObjectHideFlags: 1

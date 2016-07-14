@@ -12,20 +12,20 @@ using System.Collections;
 public abstract class AbstractBehaviour : MonoBehaviour
 {
     /// <summary> List of virtual buttons needed by this behaviour </summary>
-    public EButtons[] _inputButtons;
+    public EButtons[] inputButtons;
     /// <summary> List of behaviours that this behaviour must disable when performing certain action </summary>
-    public MonoBehaviour[] _disableScripts;
+    public MonoBehaviour[] disableScripts;
 
     /// <summary> Reference to the input state, needed to read the neccesary virtual buttons </summary>
-    protected InputState _inputState;
+    protected InputState inputState;
     /// <summary> Rigidbody2D reference, needed to transform the character </summary>
-    protected Rigidbody2D _body2d;
+    protected Rigidbody2D body2d;
     //protected CollisionState collisionState;
 
     protected virtual void Awake()
     {
-        _inputState = GetComponent<InputState>();
-        _body2d = GetComponent<Rigidbody2D>();
+        this.inputState = GetComponent<InputState>();
+        this.body2d = GetComponent<Rigidbody2D>();
         //collisionState = GetComponent<CollisionState>();
     }
 
@@ -35,7 +35,7 @@ public abstract class AbstractBehaviour : MonoBehaviour
     /// <param name="value">true to enable the behaviours, or false to disable them</param>
     protected virtual void ToggleScripts(bool value)
     {
-        foreach (var script in _disableScripts)
+        foreach (var script in this.disableScripts)
         {
             script.enabled = value;
         }

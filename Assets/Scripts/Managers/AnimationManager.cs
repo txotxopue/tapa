@@ -7,16 +7,16 @@ using System.Collections;
 /// </summary>
 public class AnimationManager : MonoBehaviour
 {
-    private InputState _inputState;
-    private Walk _walkBehaviour;
-    private Animator _animator;
+    private InputState inputState;
+    private Walk walkBehaviour;
+    private Animator animator;
     //private CollisionState collisionState;
 
 
     void Awake()
     {
-        _inputState = GetComponent<InputState>();
-        _animator = GetComponent<Animator>();
+        this.inputState = GetComponent<InputState>();
+        this.animator = GetComponent<Animator>();
         //collisionState = GetComponent<CollisionState>();
     }
 	
@@ -29,11 +29,11 @@ public class AnimationManager : MonoBehaviour
             ChangeAnimationState(0);
         }
         */
-        if (_inputState._absVelX > 0)
+        if (this.inputState._absVelX > 0)
         {
             ChangeAnimationState(1);
         }
-        if (_inputState._absVelY > 0)
+        if (this.inputState._absVelY > 0)
         {
             ChangeAnimationState(2);
         }
@@ -41,6 +41,6 @@ public class AnimationManager : MonoBehaviour
 
     private void ChangeAnimationState(int value)
     {
-        _animator.SetInteger("AnimState", value);
+        this.animator.SetInteger("AnimState", value);
     }
 }

@@ -30,17 +30,14 @@ public class BambooShooter : AbstractBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        var shoot = _inputState.GetButtonValue(_inputButtons[0]);
+        var shoot = inputState.GetButtonValue(inputButtons[0]);
 
         if (this.canShoot && shoot)
         {
             var spawnPos = this.projectileSpawns[(int) this.stateScript._direction].transform.position;
-            print(spawnPos);
-            var projectile = Instantiate(this.projectilePrefab);
-            projectile.transform.position = spawnPos;
-            var rotation = new Quaternion();
-            rotation.eulerAngles = new Vector3(0, 0, GetProjectileRotation(this.stateScript._direction));
-            projectile.transform.rotation = rotation;
+            var rotation = new Vector3(0, 0, GetProjectileRotation(this.stateScript._direction));
+            GameObjectUtil.Instantiate(this.projectilePrefab, spawnPos, rotation);
+            
             this.canShoot = false;
             StartCoroutine(RestoreShoot());
         }
@@ -59,6 +56,14 @@ public class BambooShooter : AbstractBehaviour
                 return 270f;
             case EDirections.Left:
                 return 90f;
+            case EDirections.UpRight:
+                return 315f;
+            case EDirections.UpLeft:
+                return 45f;
+            case EDirections.DownRight:
+                return 225f;
+            case EDirections.DownLeft:
+                return 135f;
             default:
                 return 0f;              
         }

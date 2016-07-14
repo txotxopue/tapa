@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AutoMove : MonoBehaviour
+public class AutoMove : MonoBehaviour, IRecycle
 {
     public int speed = 500;
 
@@ -12,10 +12,15 @@ public class AutoMove : MonoBehaviour
         body2D = GetComponent<Rigidbody2D>();
     }
 	
-    void Start ()
+    public void Restart ()
     {
         var movement = speed * transform.up * Time.deltaTime;
         body2D.velocity = movement;
+    }
+
+    public void Shutdown()
+    {
+
     }
 
 	// Update is called once per frame

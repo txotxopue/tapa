@@ -9,9 +9,15 @@ public class Health : MonoBehaviour
     public bool isDead = false;
     public bool isHit = false;
     public float hitCD = 1f;
+    public GameObject deadParticlesPrefab;
 
-	// Use this for initialization
-	void Start ()
+    public delegate void OnHit();
+    public event OnHit HitCallback;
+    public delegate void OnDead();
+    public event OnDead DeadCallback;
+
+    // Use this for initialization
+    void Start ()
     {
         InitHealth();
 	}
@@ -29,13 +35,16 @@ public class Health : MonoBehaviour
         {
             print("Hit by " + pAmount);
             this.currentHP -= pAmount;
-            if (this.currentHP < 0)
+            if (this.currentHP <= 0)
             {
                 this.currentHP = 0;
-                this.isDead = true;
+                if (!this.isDead) Die();
             }
-            this.isHit = true;
-            StartCoroutine(RestoreHit());
+            else
+            {
+                this.isHit = true;
+                StartCoroutine(RestoreHit());
+            }
         }
     }
 
@@ -49,6 +58,17 @@ public class Health : MonoBehaviour
                 this.currentHP = this.maxHP;
             }
         }
+    }
+
+    private void Die()
+    {
+        this.isDead = true;
+        if (this.DeadCallback != null) DeadCallback();
+        //whatever
+        var particles = Instantiate(this.deadParticlesPrefab);
+        particles.transform.position = this.transform.position;
+        GameObjectUtil.Destroy(this.gameObject);
+        //this.gameObject.SetActive(false);
     }
 
     private IEnumerator RestoreHit()
