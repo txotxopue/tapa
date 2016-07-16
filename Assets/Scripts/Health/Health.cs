@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IRecycle
 {
     public int maxHP = 10;
     public int currentHP;
@@ -19,21 +19,26 @@ public class Health : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        InitHealth();
+        Restart();
 	}
 	
-    private void InitHealth()
+    public void Restart()
     {
         this.currentHP = this.maxHP;
         this.isDead = false;
         this.isHit = false;
     }
 
+    public void Shutdown()
+    {
+
+    }
+
     public void TakeDamage(int pAmount)
     {
         if (!this.isDead && !this.isHit)
         {
-            print("Hit by " + pAmount);
+            //print("Hit by " + pAmount);
             this.currentHP -= pAmount;
             if (this.currentHP <= 0)
             {

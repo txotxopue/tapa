@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21274584}
   - 114: {fileID: 11445786}
   - 114: {fileID: 11454688}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SmokeTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,11 +9,11 @@ public class Projectile : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D other)
     {
-        print("projectile collided");
+        //print("projectile collided");
         var healthScript = other.gameObject.GetComponent<Health>() as Health;
         if (healthScript != null && this.isEnemy != healthScript.isEnemy)
         {
-            print("Take damage " + damage);
+            //print("Take damage " + damage);
             healthScript.TakeDamage(damage);
             Impact();
         }

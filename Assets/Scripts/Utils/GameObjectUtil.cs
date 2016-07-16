@@ -53,6 +53,18 @@ public class GameObjectUtil
         else
         {
             var poolContainer = new GameObject(pReference.gameObject.name + "ObjectPool");
+
+            var poolName = LayerMask.LayerToName(pReference.gameObject.layer);
+            var poolParent = GameObject.Find(poolName);
+            if (poolParent != null)
+            {
+                poolContainer.transform.parent = poolParent.transform;
+            }
+            else
+            {
+                poolContainer.transform.parent = GameObject.Find("Pools").transform;
+            }
+            
             pool = poolContainer.AddComponent<ObjectPool>();
             pool.prefab = pReference;
             GameObjectUtil.pools.Add(pReference, pool);
