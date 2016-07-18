@@ -13,7 +13,9 @@ public enum EButtons
     Up,
     Down,
     A,
-    B
+    B,
+    S,
+    O
 }
 
 
@@ -77,7 +79,8 @@ public class InputAxisState
 public class InputManager : MonoBehaviour
 {
     /// <summary> List of all the inputs and their mapped virtual input </summary>
-    public InputAxisState[] inputs;
+    //public InputAxisState[] inputs;
+    public InputMapScriptableObject inputMap;
     /// <summary> Reference to the input state which we will pass all the input results to </summary>
     public InputState inputState;
 	
@@ -85,7 +88,7 @@ public class InputManager : MonoBehaviour
 	void Update ()
     {
         // We run through every mapped input and set its value in the input state
-	    foreach (InputAxisState input in this.inputs)
+	    foreach (InputAxisState input in this.inputMap.inputs)
         {
             if (this.inputState != null) this.inputState.SetButtonValue(input._button, input.value);
         }

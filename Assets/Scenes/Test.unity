@@ -5267,8 +5267,8 @@ Transform:
   m_Children:
   - {fileID: 597422011}
   - {fileID: 1472773294}
-  - {fileID: 580449177}
   - {fileID: 1209640552}
+  - {fileID: 580449177}
   - {fileID: 1517734307}
   - {fileID: 1783752108}
   - {fileID: 535024707}
@@ -5905,27 +5905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe249ce1876b404a92cc8677c20ebb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs:
-  - _axisName: Horizontal
-    _offValue: 0
-    _condition: 0
-    _button: 0
-  - _axisName: Horizontal
-    _offValue: 0
-    _condition: 1
-    _button: 1
-  - _axisName: Vertical
-    _offValue: 0
-    _condition: 0
-    _button: 2
-  - _axisName: Vertical
-    _offValue: 0
-    _condition: 1
-    _button: 3
-  - _axisName: Fire1
-    _offValue: 0
-    _condition: 0
-    _button: 4
+  inputMap: {fileID: 11400000, guid: ad2a920c549875647ba9be4df5421614, type: 2}
   inputState: {fileID: 820854994}
 --- !u!4 &1051253988
 Transform:
@@ -5951,7 +5931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe249ce1876b404a92cc8677c20ebb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
+  inputMap: {fileID: 11400000, guid: 72b8d98de87d777468087d71310d14de, type: 2}
   inputState: {fileID: 0}
 --- !u!114 &1051253990
 MonoBehaviour:
@@ -5964,27 +5944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe249ce1876b404a92cc8677c20ebb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs:
-  - _axisName: HorizontalJoy1
-    _offValue: 0
-    _condition: 0
-    _button: 0
-  - _axisName: HorizontalJoy1
-    _offValue: 0
-    _condition: 1
-    _button: 1
-  - _axisName: VerticalJoy1
-    _offValue: 0
-    _condition: 0
-    _button: 2
-  - _axisName: VerticalJoy1
-    _offValue: 0
-    _condition: 1
-    _button: 3
-  - _axisName: Fire1Joy1
-    _offValue: 0
-    _condition: 0
-    _button: 4
+  inputMap: {fileID: 11400000, guid: 567d0463a1c6c6c4683b58e49ac7e719, type: 2}
   inputState: {fileID: 880470115}
 --- !u!1 &1054049115
 GameObject:
