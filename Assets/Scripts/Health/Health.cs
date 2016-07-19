@@ -77,7 +77,7 @@ public class Health : MonoBehaviour, IRecycle
 
     private IEnumerator RestoreHit()
     {
-        yield return new WaitForSeconds(hitCD);
+        yield return new WaitForSeconds(this.hitCD);
         this.isHit = false;
     }
 }

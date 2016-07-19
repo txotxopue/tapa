@@ -10,19 +10,26 @@ public struct SpawnerStruct
     public bool canSpawn;
 }
 
+[RequireComponent(typeof(ColliderState))]
 public class SpawnerManager : MonoBehaviour, IRecycle
 {
     public float spawnTime;
     public int spawnsWaiting = 1;
     public GameObject enemyPrefab;
-    public LayerMask collisionLayer;
-    public SpawnerStruct[] spawners;
-    public float collisionRadius = 7f;
-    public Color debugCanSpawnColor = Color.green;
-    public Color debugCannotSpawnColor = Color.red;
+    //public LayerMask collisionLayer;
+    //public SpawnerStruct[] spawners;
+    //public float collisionRadius = 7f;
+    //public Color debugCanSpawnColor = Color.green;
+    //public Color debugCannotSpawnColor = Color.red;
 
     private Coroutine spawnerCoroutine;
     private int initialSpawnsWaiting;
+    private ColliderState colliderState;
+
+    void Awake()
+    {
+        this.colliderState = GetComponent<ColliderState>();
+    }
 
     void Start()
     {
@@ -41,6 +48,7 @@ public class SpawnerManager : MonoBehaviour, IRecycle
         StopCoroutine(this.spawnerCoroutine);
     }
 
+    /*
     private bool CanSpawn(SpawnerStruct pSpawner)
     {
         var pos = pSpawner.spawnerPosition;
@@ -48,7 +56,9 @@ public class SpawnerManager : MonoBehaviour, IRecycle
         pos.y += transform.position.y;
         return !Physics2D.OverlapCircle(pos, collisionRadius, collisionLayer);
     }
+    */
 
+    /*
     void OnDrawGizmos()
     {
         foreach ( var spawner in this.spawners )
@@ -60,11 +70,13 @@ public class SpawnerManager : MonoBehaviour, IRecycle
             Gizmos.DrawWireSphere(pos, this.collisionRadius); 
         }
     }
+    */
 
     private IEnumerator Spawner()
     {
         while (true)
         {
+            /*
             var availableSpawners = new List<SpawnerStruct>();
             for (int i = 0; i < this.spawners.Length; i++)
             {
@@ -74,11 +86,13 @@ public class SpawnerManager : MonoBehaviour, IRecycle
                     availableSpawners.Add(this.spawners[i]);
                 }
             }
+            */
+            var availableSpawners = this.colliderState.GetClearColliders();
             
             RandomizeSpawnersList(availableSpawners);
             for (int i = 0; this.spawnsWaiting > 0 && i < availableSpawners.Count; i++)
             {
-                this.SpawnEnemy(availableSpawners[i]);
+                this.SpawnEnemy(availableSpawners[i].position);
                 this.spawnsWaiting--;    
             }
             this.spawnsWaiting++;
@@ -86,16 +100,16 @@ public class SpawnerManager : MonoBehaviour, IRecycle
         }
     }
 
-    public void SpawnEnemy(SpawnerStruct pSpawner)
+    public void SpawnEnemy(Vector2 pSpawnerPosition)
     {
         //Debug.Log("Enemy spawned at " + name);
-        var pos = pSpawner.spawnerPosition;
+        var pos = pSpawnerPosition;
         pos.x += transform.position.x;
         pos.y += transform.position.y;
         GameObjectUtil.Instantiate(this.enemyPrefab, pos, Vector3.zero);
     }
 
-    public void RandomizeSpawnersList(List<SpawnerStruct> pSpawners)
+    public void RandomizeSpawnersList(List<ColliderStruct> pSpawners)
     {
         for (var i = 0; i < pSpawners.Count; i++)
         {

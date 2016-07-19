@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11420352}
   - 114: {fileID: 11404554}
   - 114: {fileID: 11448214}
+  - 114: {fileID: 11468102}
   m_Layer: 12
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -20,6 +21,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &144416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 435146}
+  - 58: {fileID: 5803026}
+  m_Layer: 10
+  m_Name: WallCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &435146
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 462432}
+  m_RootOrder: 0
 --- !u!4 &462432
 Transform:
   m_ObjectHideFlags: 1
@@ -27,12 +57,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32, y: 32, z: 0}
+  m_LocalPosition: {x: -176, y: -96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 435146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!58 &5803026
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144416}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 7
 --- !u!58 &5813658
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -118,6 +163,48 @@ MonoBehaviour:
   - name: UpLeft
     spawnerPosition: {x: -16, y: 16}
     canSpawn: 1
+  collisionRadius: 7
+  debugCanSpawnColor: {r: 0, g: 1, b: 0, a: 1}
+  debugCannotSpawnColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &11468102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 480ccefe14d55c244985671a448221f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 4864
+  colliders:
+  - name: 
+    position: {x: 0, y: 16}
+    isClear: 0
+  - name: 
+    position: {x: 16, y: 16}
+    isClear: 0
+  - name: 
+    position: {x: 16, y: 0}
+    isClear: 0
+  - name: 
+    position: {x: 16, y: -16}
+    isClear: 0
+  - name: 
+    position: {x: 0, y: -16}
+    isClear: 0
+  - name: 
+    position: {x: -16, y: -16}
+    isClear: 0
+  - name: 
+    position: {x: -16, y: 0}
+    isClear: 0
+  - name: 
+    position: {x: -16, y: 16}
+    isClear: 0
   collisionRadius: 7
   debugCanSpawnColor: {r: 0, g: 1, b: 0, a: 1}
   debugCannotSpawnColor: {r: 1, g: 0, b: 0, a: 1}
