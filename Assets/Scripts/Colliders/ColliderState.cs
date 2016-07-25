@@ -6,7 +6,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public struct ColliderStruct
 {
-    public string name;
+    public EDirections direction;
     public Vector2 position;
     public bool isClear;
 }

@@ -7,11 +7,12 @@ public abstract class EnemyAI : MonoBehaviour, IRecycle
     public float thinkTime = 1f;
 
     protected Coroutine thinkCoroutine;
-    protected Rigidbody2D myBody2D;
+    /// <summary> Reference to the input state which we will pass all the input results to </summary>
+    protected InputState inputState;
 
-    void Awake ()
+    protected virtual void Awake ()
     {
-        this.myBody2D = GetComponent<Rigidbody2D>();
+        this.inputState = GetComponent<InputState>();
     }
 
 	// Use this for initialization

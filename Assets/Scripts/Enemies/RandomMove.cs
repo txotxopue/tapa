@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public enum EThinkRandomMoveActions
@@ -14,7 +15,17 @@ public class RandomMove : EnemyAI
 
     public EThinkRandomMoveActions currentAction = EThinkRandomMoveActions.Wait;
     public EDirections currentDirection = EDirections.Up;
+
+    private ColliderState colliderState;
     
+
+    protected override void Awake ()
+    {
+        base.Awake();
+        this.colliderState = GetComponent<ColliderState>();
+
+    }
+
 
     protected override void Think()
     {
@@ -29,68 +40,102 @@ public class RandomMove : EnemyAI
                 Wait();
                 break;
             case EThinkRandomMoveActions.Move:
-                ChooseDirection();
-                Move();
+                if (ChooseDirection())
+                {
+                    Move();
+                }
+                else
+                {
+                    Wait();
+                }
                 break;
             default:
                 break;
         }        
     }
 
-    private void ChooseDirection()
+    private bool ChooseDirection()
     {
-        var values = Enum.GetValues(typeof(EDirections));
-        var index = UnityEngine.Random.Range(0, values.Length);
-        this.currentDirection = (EDirections)values.GetValue(index);
+        if (colliderState != null)
+        {
+            var colliders = colliderState.GetClearColliders();
+            if (colliders.Count > 0)
+            {
+                var index = UnityEngine.Random.Range(0, colliders.Count);
+                this.currentDirection = colliders[index].direction;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void Move()
     {
-        if (this.myBody2D != null)
+        switch (this.currentDirection)
         {
-            var velX = 0f;
-            var velY = 0f;
-            switch (currentDirection)
-            {
-                case EDirections.Up:
-                    velY = 1f;
-                    break;
-                case EDirections.UpRight:
-                    velY = 1f;
-                    velX = 1f;
-                    break;
-                case EDirections.Right:
-                    velX = 1f;
-                    break;
-                case EDirections.DownRight:
-                    velY = -1f;
-                    velX = 1f;
-                    break;
-                case EDirections.Down:
-                    velY = -1f;
-                    break;
-                case EDirections.DownLeft:
-                    velY = -1f;
-                    velX = -1f;
-                    break;
-                case EDirections.Left:
-                    velX = -1f;
-                    break;
-                case EDirections.UpLeft:
-                    velY = 1f;
-                    velX = -1f;
-                    break;
-            }
-            var movement = new Vector2(velX, velY).normalized * this.speed;
-            this.myBody2D.velocity = movement;
+            case EDirections.Up:
+                this.inputState.SetButtonValue(EButtons.Up, true);
+                this.inputState.SetButtonValue(EButtons.Right, false);
+                this.inputState.SetButtonValue(EButtons.Down, false);
+                this.inputState.SetButtonValue(EButtons.Left, false);
+                break;
+            case EDirections.UpRight:
+                this.inputState.SetButtonValue(EButtons.Up, true);
+                this.inputState.SetButtonValue(EButtons.Right, true);
+                this.inputState.SetButtonValue(EButtons.Down, false);
+                this.inputState.SetButtonValue(EButtons.Left, false);
+                break;
+            case EDirections.Right:
+                this.inputState.SetButtonValue(EButtons.Up, false);
+                this.inputState.SetButtonValue(EButtons.Right, true);
+                this.inputState.SetButtonValue(EButtons.Down, false);
+                this.inputState.SetButtonValue(EButtons.Left, false);
+                break;
+            case EDirections.DownRight:
+                this.inputState.SetButtonValue(EButtons.Up, false);
+                this.inputState.SetButtonValue(EButtons.Right, true);
+                this.inputState.SetButtonValue(EButtons.Down, true);
+                this.inputState.SetButtonValue(EButtons.Left, false);
+                break;
+            case EDirections.Down:
+                this.inputState.SetButtonValue(EButtons.Up, false);
+                this.inputState.SetButtonValue(EButtons.Right, false);
+                this.inputState.SetButtonValue(EButtons.Down, true);
+                this.inputState.SetButtonValue(EButtons.Left, false);
+                break;
+            case EDirections.DownLeft:
+                this.inputState.SetButtonValue(EButtons.Up, false);
+                this.inputState.SetButtonValue(EButtons.Right, false);
+                this.inputState.SetButtonValue(EButtons.Down, true);
+                this.inputState.SetButtonValue(EButtons.Left, true);
+                break;
+            case EDirections.Left:
+                this.inputState.SetButtonValue(EButtons.Up, false);
+                this.inputState.SetButtonValue(EButtons.Right, false);
+                this.inputState.SetButtonValue(EButtons.Down, false);
+                this.inputState.SetButtonValue(EButtons.Left, true);
+                break;
+            case EDirections.UpLeft:
+                this.inputState.SetButtonValue(EButtons.Up, true);
+                this.inputState.SetButtonValue(EButtons.Right, false);
+                this.inputState.SetButtonValue(EButtons.Down, false);
+                this.inputState.SetButtonValue(EButtons.Left, true);
+                break;
         }
     }
 
     private void Wait()
     {
-        float velX = 0f;
-        float velY = 0f;
-        var movement = new Vector2(velX, velY).normalized;
-        this.myBody2D.velocity = movement;
+        this.inputState.SetButtonValue(EButtons.Up, false);
+        this.inputState.SetButtonValue(EButtons.Right, false);
+        this.inputState.SetButtonValue(EButtons.Down, false);
+        this.inputState.SetButtonValue(EButtons.Left, false);
     }
 }
